@@ -12,8 +12,17 @@ fi
 updBashrc = $1
 updVimrc = $2
 
-echo "updBashrc : " + $updBashrc
-echo "updVimrc : " + $updVimrc
+if [ $updBashrc ]; then
+  echo "Bash True"
+else
+  echo "Bash False"
+fi
+
+if [ $updVimrc ]; then
+  echo "Vim True"
+else
+  echo "Vim False"
+fi
 
 #if [ $updBashrc ]; then
   
