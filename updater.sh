@@ -9,8 +9,8 @@ if [ "$#" -ne 2 ]; then
   exit 1
 fi
 
-updBashrc = $1
-updVimrc = $2
+SET updBashrc = $1
+SET updVimrc = $2
 
 if [ $updBashrc ]; then
   echo "Bash True"
