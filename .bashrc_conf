@@ -1,0 +1,4 @@
+# bashrc settings
+echo "bashrc_conf loaded"
+
+set bashrc_autoupdate=true
