@@ -1,4 +1,10 @@
 # bashrc settings
 echo "bashrc_conf loaded"
 
-set bashrc_autoupdate=true
+# Running version of bashrc and conf
+set bashrc_version="1"
+set bashrc_conf_version="1"
+
+bashrc_autoupdate=1
+
+bashrc_cowgreeting=1

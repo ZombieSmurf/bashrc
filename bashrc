@@ -1,10 +1,13 @@
+# show debug messages
+bashrc_debug=1
+
 # Test if internet connection
 if : >/dev/tcp/8.8.8.8/53; then
   bashrc_internet=true
-  echo "internet working"
+  [ $bashrc_debug -eq 1 ] && echo "internet working"
 else
   bashrc_internet=false
-  echo "no internet"
+  [ $bashrc_debug -eq 1 ] && echo "no internet"
 fi
 
 if [ -f ~/.bashrc_conf ]; then
@@ -15,10 +18,10 @@ else
   set bashrc_conf=false
 fi
 
-if [ bashrc_conf]; then
+if [ $bashrc_conf]; then
   # Check for bashrc update
-  if [ bashrc_autoupdate && bashrc_internet ]; then
-    echo "Checking for bashrc update"
+  if [ $bashrc_autoupdate -eq 1 ] && [ $bashrc_internet -eq 1 ]; then
+    [ $bashrc_debug -eq 1 ] && echo "Checking for bashrc update"
   fi
 fi
 
@@ -163,4 +166,11 @@ LS_COLORS='rs=0:di=04;94:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:c
 export LS_COLORS
 
 # celebrate login with good fortune!
-/usr/games/fortune | /usr/games/cowsay -f /usr/share/cowsay/cows/three-eyes.cow | /usr/games/lolcat
+[ $bashrc_debug -eq 1 ] && echo "cow welcome"
+if [ $bashrc_cowgreeting -eq 1 ]; then
+  if [ -f "/usr/games/fortune" ] && [ -f "/usr/games/cowsay" ] && [ -f "/usr/games/lolcat" ]; then
+    /usr/games/fortune | /usr/games/cowsay -f /usr/share/cowsay/cows/three-eyes.cow | /usr/games/lolcat
+  else
+    sudo apt-get install -y fortune fortunes-bofh-excuses cowsay lolcat
+  fi
+fi
